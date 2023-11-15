@@ -9,8 +9,9 @@ import { Formik } from 'formik';
 import { Dropdown } from 'react-native-element-dropdown';
 import { loginValidation } from '../../validation/loginValidation';
 import { ImageResource } from "../../utils/constant/resource";
+import { initialValues, campusData } from '../../utils/constant/constant'
+import SwitchAccount from '../SwitchAccount/switchAccount';
 import RenderIf from '../../utils/helper/renderIf';
-import { initialValues, campusData } from '../../utils/constant'
 
 const LoginScreen = () => {
 
@@ -19,7 +20,6 @@ const LoginScreen = () => {
 
   const [campusId, setCampusId] = useState(null);
   const [showSwitchAccountModal, setShowSwitchAccountModal] = useState(false)
-
 
   const renderDropDownItem = item => {
     return (
@@ -37,7 +37,7 @@ const LoginScreen = () => {
         <View style={styles.LoginHeader}>
           <View style={styles.logoContainer(90, 90)}>
             <Image
-              source={ImageResource.logo[APP_IMG]}
+              source={ImageResource.logo["bib_logo"]}
               style={styles.logo}
             />
           </View>

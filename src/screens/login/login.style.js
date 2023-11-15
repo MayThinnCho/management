@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
   },
   logoText: {
     color: theme.colors.white,
-    fontWeight:bold,
+    fontWeight:'bold',
     fontSize: 18,
     textAlign: 'center',
     paddingVertical: 20,

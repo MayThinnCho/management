@@ -21,12 +21,11 @@ const getCustomTheme = () => {
                     },
                     titleStyle: {
                         color: (props.type == 'solid' || props.type == null) ? theme.colors.white : theme.colors.primary,
-                        fontFamily: theme.fonts.regular,
+                        // fontFamily: theme.fonts.regular,
                     },
                 }),
                 Input: (_, theme) => ({
                     style: {
-                        // fontFamily: theme.fonts.regular,
                         fontSize: 16,
                         color: theme.colors.black,
                     }

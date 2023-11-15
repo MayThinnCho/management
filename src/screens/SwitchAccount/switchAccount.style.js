@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
     headerWrapper: {
         width: "100%",
         backgroundColor: theme.colors.white,
-        shadowColor: Color.brightGrey,
+        shadowColor: theme.colors.brightGrey,
         // height:65,
         justifyContent: "center",
         shadowOffset: { width: 0, height: 1 },
@@ -153,6 +153,13 @@ const useStyles = makeStyles((theme) => ({
     },
     closeText:{
         color: '#333',
+        letterSpacing: 1
+    },
+    emptyText:{
+        fontSize: 16,
+        color: theme.colors.green,
+        fontWeight: 'bold',
+        marginTop: 10,
         letterSpacing: 1
     }
 }) )
