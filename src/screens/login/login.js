@@ -1,4 +1,4 @@
-import { TouchableOpacity, View, } from 'react-native';
+import { TouchableOpacity, View, ScrollView, TextInput,BackHandler, Alert, Vibration, KeyboardAvoidingView, Linking, AppState, Modal, Pressable, Platform } from 'react-native';
 import { Badge, Button, Divider, Image, Text, Input, useTheme } from '@rneui/themed';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { makeStyles } from '@rneui/themed';
@@ -7,12 +7,14 @@ import useStyles from './login.style';
 import { useState } from 'react';
 import { Formik } from 'formik';
 import { Dropdown } from 'react-native-element-dropdown';
-import { loginValidation } from '../../validation/loginValidation';
+import SelectDropdown from "react-native-select-dropdown";
 import { ImageResource } from "../../utils/constant/resource";
-import { initialValues, campusData } from '../../utils/constant/constant'
+import { initialValues, campusList } from '../../utils/constant/constant'
 import SwitchAccount from '../SwitchAccount/switchAccount';
 import RenderIf from '../../utils/helper/renderIf';
 import CustomStatusBar from '../../component/gm-school/CustomStatusBar/customStatusBar';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import CustomError from '../../component/gm-school/CustomError/customError';
 
 const LoginScreen = () => {
 
@@ -21,76 +23,99 @@ const LoginScreen = () => {
 
   const [campusId, setCampusId] = useState(null);
   const [showSwitchAccountModal, setShowSwitchAccountModal] = useState(false)
+  const keyboardStatus = true;
+  const isPreviousUserExist = true;
+  const loginIdError = "Campus is required";
 
-  const renderDropDownItem = item => {
-    return (
-      <>
-        <View style={styles.dropdownItem}>
-          <Text style={styles.dropdownLabel}>{item.label}</Text>
-        </View>
-        <Divider />
-      </>
-    );
-  };
   return (
     <>
       <CustomStatusBar />
-      <SafeAreaView style={{ flex: 1 }}>
-        <View style={styles.container}>
-          <View style={styles.LoginHeader}>
-            <View style={styles.logoContainer(90, 90)}>
-              <Image
-                source={ImageResource.logo["bib_logo"]}
-                style={styles.logo}
-              />
+      <KeyboardAwareScrollView
+        contentContainerStyle={styles.container}
+        showsVerticalScrollIndicator={false}
+      >
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <KeyboardAvoidingView style={{ flex: 1 }} enabled={keyboardStatus} behavior={Platform.OS !== 'ios' ? 'padding' : null}>
+            <View style={styles.LoginHeader}>
+              <TouchableOpacity activeOpacity={0.9} style={styles.logoContainer(90, 90)}>
+                <Image
+                  source={ImageResource.logo["bib_logo"]}
+                  style={styles.logo}
+                />
+              </TouchableOpacity>
+              <View>
+                <Text style={styles.logoText}>BIB Institute</Text>
+                {
+                  <SelectDropdown
+                    data={campusList.length > 0 && campusList?.map(res => res.text)}
+                    onSelect={(_, index) => {
+                      setCampusId(campusList[index].id);
+                    }}
+                    defaultButtonText={"Select Campus"}
+                    defaultValueByIndex={campusList?.findIndex(res => res.id == campusId)}
+                    buttonTextAfterSelection={(selectedItem, index) => {
+                      return selectedItem;
+                    }}
+                    //onFocus={getData}
+                    rowTextForSelection={(item, index) => {
+                      return item;
+                    }}
+                    buttonStyle={styles.dropdownBtnStyle}
+                    buttonTextStyle={styles.dropdownBtnTxtStyle}
+                    renderDropdownIcon={(isOpened) => {
+                      return (
+                        <Ionicon
+                          name={isOpened ? "chevron-up" : "chevron-down"}
+                          color={theme.colors.darkBlue}
+                          size={22}
+                        />
+                      );
+                    }}
+                    dropdownIconPosition={"right"}
+                    dropdownStyle={styles.dropdownDropdownStyle}
+                    rowStyle={styles.dropdownRowStyle}
+                    rowTextStyle={styles.dropdownRowTxtStyle}
+                  />
+                }
+                {/*{campusIdError != null && <CustomError text={campusIdError} />}*/}
+              </View>
             </View>
-            <View>
-              <Text style={styles.logoText}>BIB Institute</Text>
-              <Dropdown
-                style={styles.dropdown}
-                placeholderStyle={styles.labelStyle}
-                selectedTextStyle={styles.labelStyle}
-                iconStyle={styles.iconStyle}
-                data={campusData}
-                maxHeight={300}
-                labelField="label"
-                valueField="value"
-                placeholder="Choose Campus"
-                value={campusId}
-                onChange={item => {
-                  setCampusId(item.value);
-                }}
-                renderItem={renderDropDownItem}
-              />
-            </View>
-          </View>
-          {/* Login Header */}
+            {/* Login Header */}
 
-          <View style={{ margin: 20 }}>
-            <Text style={styles.loginTitle}>Login with account belonging to the school</Text>
-            <View style={styles.LoginForm}>
-              <Input
-                placeholder='Login ID'
-                errorStyle={styles.errorStyle}
-                errorMessage='ENTER A VALID ERROR HERE'
-                rightIcon={<Ionicon name='mail' size={24} color={theme.colors.grey4} />}
-              />
-              <Input
-                placeholder='Password'
-                rightIcon={<Ionicon name='lock-closed' size={24} color={theme.colors.grey4} />}
-              />
-              <Button title={'Sign IN'} buttonStyle={styles.loginBtn} containerStyle={{ borderRadius: 5 }} />
+            <View style={{ margin: 20 }}>
+              <RenderIf isTrue={isPreviousUserExist}>
+                <Text style={styles.loginTitle}>Login with account belonging to the school</Text>
+              </RenderIf>
+
+              <View style={styles.LoginForm}>
+                <Input
+                  placeholder='Login ID'  
+                  rightIcon={<Ionicon name='mail' size={24} color={theme.colors.silver} />}
+                  containerStyle={{height:50, marginTop:20,}}
+                />
+                {loginIdError != null && <CustomError text={loginIdError} />}
+
+                <Input
+                  placeholder='Password'
+                  rightIcon={<Ionicon name='lock-closed' size={24} color={theme.colors.silver} />}
+                  containerStyle={{ height: 50, marginTop: 20, }}
+                />
+
+                <Button title={'Sign IN'} buttonStyle={styles.loginBtn} containerStyle={{ borderRadius: 5 }} />
+              </View>
+
+              <RenderIf isTrue={showSwitchAccountModal}  >
+                <SwitchAccount closeModal={() => { setShowSwitchAccountModal(false) }} isUserLogout={true} />
+              </RenderIf>
+              <TouchableOpacity onPress={() => setShowSwitchAccountModal(true)}>
+                <Text style={styles.loginPreviousText}>Login with previous account credentials ?</Text>
+              </TouchableOpacity>
             </View>
-            <RenderIf isTrue={showSwitchAccountModal}  >
-              <SwitchAccount closeModal={() => { setShowSwitchAccountModal(false) }} isUserLogout={true} />
-            </RenderIf>
-            <TouchableOpacity onPress={() => setShowSwitchAccountModal(true)}>
-              <Text style={styles.loginPreviousText}>Login with previous account credentials ?</Text>
-            </TouchableOpacity>
-          </View>
-          {/*Login Form*/}
-        </View>
-      </SafeAreaView>
+            {/*Login Form*/}
+            
+          </KeyboardAvoidingView>
+        </ScrollView>
+      </KeyboardAwareScrollView>
     </>
   );
 

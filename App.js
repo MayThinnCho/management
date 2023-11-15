@@ -14,7 +14,7 @@ import getCustomTheme from './src/utils/helper/theme';
 import LoginScreen from './src/screens/login/login';
 import ParentHome from './src/screens/parent/ParentHome/parentHome';
 import { Provider as RNPaperProvider } from "react-native-paper";
-
+import { MenuProvider } from "react-native-popup-menu";
 const App = () => {
 
   const theme = getCustomTheme();
@@ -23,8 +23,6 @@ const App = () => {
     <SafeAreaProvider>
       <ThemeProvider theme={theme}>
         <RNPaperProvider>
-          {/* <LoginScreen /> */}
-          {/* <ParentHome /> */}
           <AppNavigator />
         </RNPaperProvider>
       </ThemeProvider>

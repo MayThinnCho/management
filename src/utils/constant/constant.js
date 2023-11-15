@@ -7,10 +7,10 @@ export const initialValues = {
 }
 
 
-export const campusData = [
-    { label: 'BIB Campus 1', value: '1' },
-    { label: 'BIB Campus 2', value: '2' },
-    { label: 'EJ Campus', value: '3' },
+export const campusList = [
+    { text: 'BIB Campus 1', id: '1' },
+    { text: 'BIB Campus 2', id: '2' },
+    { text: 'EJ Campus', id: '3' },
 ];
 
 

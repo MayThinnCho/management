@@ -14,6 +14,7 @@ export const ImageResource = {
         income_outcome: require("../../../assets/image/income-outcome.png"),
         income_web: require("../../../assets/image/income.png"),
         outcome_web: require("../../../assets/image/expense.png"),
+        ferry: require("../../../assets/image/ferry.png"),
     },
     icon: {
         home: require("../../../assets/icon/home.png"),

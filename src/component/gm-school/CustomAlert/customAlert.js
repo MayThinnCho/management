@@ -6,10 +6,11 @@ import {
     Pressable,
     View,
     Platform,
+    TouchableOpacity
 } from "react-native";
-import { TouchableRipple, useTheme } from "react-native-paper";
 import RenderIf from "../../../utils/helper/renderIf";
 import useStyles from "./customAlert.style";
+import { useTheme } from '@rneui/themed';
 
 const CustomAlert = ({
     modalVisible,
@@ -21,7 +22,7 @@ const CustomAlert = ({
     confirmBtnText = "OK"
 }) => {
     const style = useStyles();
-    const theme = useTheme();
+    const {theme} = useTheme();
 
     return (
         <>
@@ -44,7 +45,7 @@ const CustomAlert = ({
                         </View>
                         <View style={style.btnContainer}>
                             <RenderIf isTrue={hasCancel}>
-                                <TouchableRipple
+                                <TouchableOpacity
                                     borderless={true}
                                     rippleColor="#00000020"
                                     onPress={handleCancel}
@@ -54,12 +55,11 @@ const CustomAlert = ({
                                     ]}
                                 >
                                     <Text style={[style.btnText,{ color: theme.colors.danger } ]}>
-
                                         Cancel
                                     </Text>
-                                </TouchableRipple>
+                                </TouchableOpacity>
                             </RenderIf>
-                            <TouchableRipple
+                            <TouchableOpacity
                                 borderless={true}
                                 rippleColor="#00000020"
                                 onPress={handleOk}
@@ -69,7 +69,7 @@ const CustomAlert = ({
                                 ]}
                             >
                                 <Text style={style.btnText}>{confirmBtnText}</Text>
-                            </TouchableRipple>
+                            </TouchableOpacity>
                         </View>
                     </View>
                 </View>

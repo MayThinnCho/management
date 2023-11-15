@@ -42,29 +42,13 @@ const SwitchAccount = ({ closeModal = () => { }, isUserLogout = false }) => {
     }
 
     const filterCurrentLoginUser = (userList) => {
-        // if (!isUserLogout) {
-        //     const currentUserId = userInfo?.account[`${userInfo?.usertype}_no`]
-        //     return userList.filter(user => user.loginId !== currentUserId)
-        // }
         return userList
     }
 
     const removeAccount = (selectedUser) => {
-        // const newUserList = accList.filter((user) => user.loginId !== selectedUser.loginId)
-        // setAccList(newUserList)
-        // filterCurrentUserList.current = filterCurrentLoginUser(newUserList)
-        // if (newUserList.length < 2) {
-        //     !isUserLogout && navigation.navigate('Index')
-        //     setIsPreviousUserExist(false)
-        // }
         closeModal()
-        // AsyncStorage.setItem("AccountList", JSON.stringify(newUserList))
     }
     const switchAccount = async () => {
-        // setIsLoading(true)
-        // !isUserLogout && await logoutCurrentUser()
-        // await loginAsSelectedUser()
-        // setIsLoading(false)
     }
 
 

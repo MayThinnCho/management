@@ -25,6 +25,12 @@ const getCustomTheme = () => {
                     },
                 }),
                 Input: (_, theme) => ({
+                    containerStyle: {
+                        marginBottom: 0,
+                    },
+                    inputStyle: {
+                        paddingBottom: 0,
+                    },
                     style: {
                         fontSize: 16,
                         color: theme.colors.black,

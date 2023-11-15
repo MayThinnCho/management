@@ -13,12 +13,12 @@ const useStyles = makeStyles((theme) => ({
   },
   logoText: {
     color: theme.colors.white,
-    fontWeight:'bold',
+    fontWeight: 'bold',
     fontSize: 18,
     textAlign: 'center',
     paddingVertical: 20,
   },
-  logoContainer:(w,h)=>({
+  logoContainer: (w, h) => ({
     width: w,
     height: h,
   }),
@@ -28,44 +28,8 @@ const useStyles = makeStyles((theme) => ({
     resizeMode: 'cover',
   },
 
-  dropdown: {
-    width: 200,
-    height: 40,
-    backgroundColor: theme.colors.white,
-    borderRadius: 12,
-    padding: 12,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.2,
-    shadowRadius: 1.41,
-
-    elevation: 2,
-  },
-  dropdownItem: {
-    padding: 17,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  dropdownLabel: {
-    flex: 1,
-    fontSize: 16,
-  },
-  labelStyle: {
-    fontSize: 16,
-    color: 'black',
-  },
-  iconStyle: {
-    width: 30,
-    height: 30,
-    tintColor: '#000',
-  },
-
   loginTitle: {
-    marginVertical: 22,
+    marginTop: 20,
     textAlign: 'center'
   },
   loginPreviousText: {
@@ -75,12 +39,43 @@ const useStyles = makeStyles((theme) => ({
   errorStyle: {
     color: theme.colors.error,
     fontSize: 11,
-    marginBottom: 20,
+    //marginBottom: 0,
   },
   loginBtn: {
     paddingVertical: 15,
-    borderRadius: 8,
+    marginTop: 35,
+    borderRadius: 10,
     backgroundColor: theme.colors.success,
+  },
+
+
+
+  dropdownBtnStyle: {
+    width: "50%",
+    height: 35,
+    marginTop: 10,
+    backgroundColor: theme.colors.white,
+    borderRadius: 10,
+    borderWidth: 0.5,
+    borderColor: theme.colors.silver,
+  },
+  dropdownBtnTxtStyle: {
+    color: theme.colors.darkBlue,
+    textAlign: "left",
+    fontSize: 14,
+  },
+  dropdownDropdownStyle: {
+    backgroundColor: theme.colors.white,
+    borderRadius: 5,
+  },
+  dropdownRowStyle: {
+    backgroundColor: theme.colors.white,
+    borderBottomColor: theme.colors.lightGrey,
+  },
+  dropdownRowTxtStyle: {
+    color: theme.colors.darkBlue,
+    textAlign: "left",
+    fontSize: 16,
   },
 
 }));
