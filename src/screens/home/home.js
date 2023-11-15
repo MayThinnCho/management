@@ -1,35 +1,19 @@
-import React, { useContext } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
-import styles from './home.style';
-import useThemeStyles from './../../components/useTheme/usethemeStyle';
-import ThemeContext from './../../hooks/context/themeContext';
-import { Chip, Switch, useTheme } from 'react-native-paper';
+import { TouchableOpacity, View, } from 'react-native';
+import { Badge, Button, Divider, Image, Text, Input, useTheme } from '@rneui/themed';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { makeStyles } from '@rneui/themed';
+import Ionicon from 'react-native-vector-icons/Ionicons';
+import useStyles from './login.style';
+import { useState } from 'react';
+import { Formik } from 'formik';
+import { Dropdown } from 'react-native-element-dropdown';
+import { loginValidation } from '../../validation/loginValidation';
+import RenderIf from '../../utils/helper/renderIf';
+import {initialValues,campusData} from '../../utils/constant'
+
+const ParentHome = ({navigation}) => {
 
 
-const HomeScreen = () => {
-
-  //const theme = useContext(ThemeContext);
-  //const style = useThemeStyles(styles);
-
-  const theme = useTheme();
-  return (
-    //<View style={style.body}>
-    //  <Text style={style.title}>Home Screen</Text>
-    //  <Text style={style.text}>
-    //    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae
-    //    lorem enim. Etiam accumsan nibh eu laoreet sollicitudin. Proin
-    //    ultricies, metus nec auctor ultricies, dui metus vulputate odio, id
-    //    hendrerit lectus mauris a ex.
-    //  </Text>
-    //  <Text style={style.referralCode}>3XP4N510</Text>
-    //  <Button onPress={() => { }} title="Accept" color="#2ecc71" />
-    //  <Button onPress={() => { }} title="Decline" color="#c0392b" />
-    //  <Switch onValueChange={theme.toggleTheme} value={!theme.isLightTheme} />
-    //</View>
-    <>
-      <Chip icon="information" onPress={() => console.log('Pressed')}>Example Chip</Chip>
-    </>
-  );
 };
 
-export default HomeScreen;
+export default ParentHome;

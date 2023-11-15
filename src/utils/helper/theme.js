@@ -8,7 +8,6 @@ const getCustomTheme = () => {
     return createTheme(
         {
             lightColors: COLOR,
-            fonts: FONT,
             mode: 'light',
             components: {
                 Button: (props, theme) => ({
@@ -25,18 +24,14 @@ const getCustomTheme = () => {
                         fontFamily: theme.fonts.regular,
                     },
                 }),
-                Text: (_, theme) => ({
-                    style: {
-                        fontFamily: theme.fonts.regular,
-                    }
-                }),
                 Input: (_, theme) => ({
                     style: {
-                        fontFamily: theme.fonts.regular,
+                        // fontFamily: theme.fonts.regular,
                         fontSize: 16,
                         color: theme.colors.black,
                     }
                 }),
+
             },
         }
     );

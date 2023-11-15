@@ -14,4 +14,17 @@ export const COLOR = {
     grey1: "#43484d",
     grey2: "#5e6977",
     grey3: "#86939e",
+
+    danger: "#fc5c65",
+    bgColor: "#f3f3f3",
+    green: "#2DBB54",
+    white: "#FFFFFF",
+    brightGrey: "#5C5252",
+    silver: "#C5C5C5",
+    lightGrey: "#EEE2E2",
+    darkBlue: "#293352",
+    orange: "#e87c41",
+    lightGreen: "#b0ef8f",
+    black: '#000',
+    lightBlue: '#43A6C6',
 }
