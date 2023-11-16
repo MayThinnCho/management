@@ -1,7 +1,7 @@
-import { TouchableOpacity, View, ScrollView, TextInput,BackHandler, Alert, Vibration, KeyboardAvoidingView, Linking, AppState, Modal, Pressable, Platform } from 'react-native';
+import { TouchableOpacity, View, ScrollView, TextInput, BackHandler, Alert, Vibration, KeyboardAvoidingView, Linking, AppState, Modal, Pressable, Platform } from 'react-native';
 import { Badge, Button, Divider, Image, Text, Input, useTheme } from '@rneui/themed';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { makeStyles } from '@rneui/themed';
+import { makeStyles, ThemeConsumer,withTheme } from '@rneui/themed';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import useStyles from './login.style';
 import { useState } from 'react';
@@ -26,6 +26,8 @@ const LoginScreen = () => {
   const keyboardStatus = true;
   const isPreviousUserExist = true;
   const loginIdError = "Campus is required";
+  // console.log(theme); return;
+
 
   return (
     <>
@@ -60,7 +62,7 @@ const LoginScreen = () => {
                     rowTextForSelection={(item, index) => {
                       return item;
                     }}
-                    buttonStyle={styles.dropdownBtnStyle}
+                    // buttonStyle={theme.dbuttonStyle}
                     buttonTextStyle={styles.dropdownBtnTxtStyle}
                     renderDropdownIcon={(isOpened) => {
                       return (
@@ -77,6 +79,7 @@ const LoginScreen = () => {
                     rowTextStyle={styles.dropdownRowTxtStyle}
                   />
                 }
+
                 {/*{campusIdError != null && <CustomError text={campusIdError} />}*/}
               </View>
             </View>
@@ -89,9 +92,9 @@ const LoginScreen = () => {
 
               <View style={styles.LoginForm}>
                 <Input
-                  placeholder='Login ID'  
+                  placeholder='Login ID'
                   rightIcon={<Ionicon name='mail' size={24} color={theme.colors.silver} />}
-                  containerStyle={{height:50, marginTop:20,}}
+                  containerStyle={{ height: 50, marginTop: 20, }}
                 />
                 {loginIdError != null && <CustomError text={loginIdError} />}
 
@@ -112,7 +115,7 @@ const LoginScreen = () => {
               </TouchableOpacity>
             </View>
             {/*Login Form*/}
-            
+
           </KeyboardAvoidingView>
         </ScrollView>
       </KeyboardAwareScrollView>

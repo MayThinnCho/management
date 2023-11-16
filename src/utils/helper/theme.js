@@ -13,7 +13,7 @@ const getCustomTheme = () => {
                 Button: (props, theme) => ({
                     containerStyle: {
                         marginVertical: 10,
-                        borderRadius: 10, //မပါရင် effect squareဖစ်
+                        borderRadius: 10,
                     },
                     buttonStyle: {
                         backgroundColor: (props.type == 'solid' || props.type == null) ? theme.colors.primary : 'transparent',
@@ -21,7 +21,6 @@ const getCustomTheme = () => {
                     },
                     titleStyle: {
                         color: (props.type == 'solid' || props.type == null) ? theme.colors.white : theme.colors.primary,
-                        // fontFamily: theme.fonts.regular,
                     },
                 }),
                 Input: (_, theme) => ({
@@ -36,7 +35,17 @@ const getCustomTheme = () => {
                         color: theme.colors.black,
                     }
                 }),
-
+                SelectDropdown: (props, theme) => ({
+                    buttonStyle: {
+                        width: "50%",
+                        height: 35,
+                        marginTop: 10,
+                        backgroundColor: theme.colors.white,
+                        borderRadius: 10,
+                        borderWidth: 0.5,
+                        borderColor: theme.colors.silver,
+                    },
+                }),
             },
         }
     );
